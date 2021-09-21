@@ -1,9 +1,29 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+// import axios from 'axios'
 
-const Person = ({ person, isFetching, error }) => {
+import { connect } from 'react-redux';
+import { getPerson } from '../actions';
+// import { fetchPersonLoading, fetchPersonSuccess, fetchPersonFail } from '../actions';
+
+const jonDoe = {
+  name: {
+    title: "Mr",
+    first: "Jon",
+    last: "Doe"
+  },
+  picture: {
+    large: "https://randomuser.me/api/portraits/men/70.jpg",
+    medium: "https://randomuser.me/api/portraits/med/men/70.jpg",
+    thumbnail: "https://randomuser.me/api/portraits/thumb/men/70.jpg"
+  }
+}
+
+const Person = (props) => {
+  const { person, isFetching, error } = props
+
   useEffect(() => {
-  });
+    props.getPerson()
+  }, []);
 
   if (error) {
     return <h2>We got an error: {error}</h2>;
@@ -13,13 +33,25 @@ const Person = ({ person, isFetching, error }) => {
     return <h2>Fetching person for ya!</h2>;
   }
 
+  const handleClick = () => {
+    props.getPerson()
+    // props.fetchPersonLoading()
+    // axios.get('https://randomuser.me/api/')
+    //   .then(res => {
+    //     props.fetchPersonSuccess(res.data.results[0])
+    //   })
+    //   .catch(err => {
+    //     props.fetchPersonFail(err.error)
+    //   }) 
+  }
+
   return (
     <>
       <div>
         <h2>Say Hi to: {person.name.first} {person.name.last}</h2>
         <img src={person.picture.large}/>
       </div>
-      <button>Get new person</button>
+      <button onClick={handleClick}>Get new person</button>
     </>
   );
 };
@@ -32,4 +64,5 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Person);
+export default connect(mapStateToProps, {getPerson})(Person);
+// export default connect(mapStateToProps, { fetchPersonLoading, fetchPersonSuccess, fetchPersonFail })(Person);
