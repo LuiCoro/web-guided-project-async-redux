@@ -17,6 +17,10 @@ const initialState = {
   error: ''
 };
 
+export const getPerson = () => {
+//   1. Start Loading
+}
+
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case(FETCH_PERSON_LOADING) :
