@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+
+// we are now importing logger and using it
+import logger from 'redux-logger'
 
 import rootReducer from './reducers';
 
@@ -10,7 +13,7 @@ import FriendsList from './components/FriendsList';
 import './styles.css';
 
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,  applyMiddleware(logger));
 
 function App() {
   return (

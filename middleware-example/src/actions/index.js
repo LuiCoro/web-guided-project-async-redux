@@ -18,6 +18,7 @@ export function addNewFriend(newFriend) {
 
 export function toggleFriend(index) {
   return {
+    // This is simply returning an object
     type: TOGGLE_FRIEND,
     payload: index
   };

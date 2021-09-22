@@ -1,5 +1,6 @@
 import { ADD_FRIEND, TOGGLE_FRIEND } from '../actions';
 
+// This here is our initial State of the App
 const initialState = {
   friends: [
     { name: 'Clint', besties: true },
@@ -8,6 +9,7 @@ const initialState = {
 };
 
 export const friendsReducer = (state = initialState, action) => {
+  
   switch (action.type) {
     case ADD_FRIEND:
       const newFriend = {
